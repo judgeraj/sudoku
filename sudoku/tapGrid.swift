@@ -27,16 +27,27 @@ class tapGrid: UIView {
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0]]
     var number: String = ""
+    var row: Int = 0
+    var col: Int = 0
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     //((Int(bounds.width)/9)*i)/2),((Int(bounds.height)/9)*i)/2)
     
-    @IBAction func inputView(_ sender: Any) {
-        
-    }
+    @IBOutlet weak var numberText: UITextField!
     
     @IBAction func enterButton(_ sender: Any) {
         
+        number = numberText.text!
+        let num = Int(number)
+        
+        if(num != nil) {
+            if((num! > 0) && (num! < 10)) {
+                touchCount[col][row] = num!
+                numberText.text = ""
+            }
+        }
+        setNeedsDisplay()
+                
     }
     
     override func draw(_ rect: CGRect) {
@@ -121,14 +132,13 @@ class tapGrid: UIView {
         let yAdjust = (min == h) ? 0 : ((Int(sub) - Int(min))/2) //PADDING FOR Y AXIS
         let xAdjust = (min != h) ? 0 : ((Int(sub) - Int(min))/2)
         let tapPoint = sender.location(in: self)
-        let col = Int(abs(tapPoint.x - CGFloat(xAdjust))/mul)
-        let row = Int(abs((tapPoint.y - CGFloat(yAdjust)))/mul)
+        let innercol = Int(abs(tapPoint.x - CGFloat(xAdjust))/mul)
+        let innerrow = Int(abs((tapPoint.y - CGFloat(yAdjust)))/mul)
 
         //checking to see if click out of bounds
         if (tapPoint.y > CGFloat(yAdjust) && tapPoint.y < CGFloat(min + CGFloat(yAdjust))) && (tapPoint.x > CGFloat(xAdjust) && tapPoint.x < min + CGFloat(xAdjust)) {
-            // check to see if our value in the 2d array is already max
-            //reset if that is the case else increment
-            touchCount[col][row] = (touchCount[col][row] == 9) ? 0 : (touchCount[col][row] + 1)
+            col = innercol
+            row = innerrow
         }
         setNeedsDisplay()
     }

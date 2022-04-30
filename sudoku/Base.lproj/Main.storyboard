@@ -31,19 +31,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKZ-S2-f39">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Num" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKZ-S2-f39">
                                         <rect key="frame" x="139" y="53" width="97" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="inputView:" destination="QBQ-pf-cOv" eventType="editingDidEnd" id="g0g-iq-Wjo"/>
                                             <action selector="inputView:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="kdu-3U-uzV"/>
+                                            <action selector="textField:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="BlH-xp-oAh"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Ia-01k">
-                                        <rect key="frame" x="244" y="55" width="67" height="31"/>
+                                        <rect key="frame" x="252.5" y="55" width="58.5" height="31"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Enter"/>
                                         <connections>
                                             <action selector="enterButton:" destination="B9b-Xf-KtK" eventType="touchUpInside" id="b09-4P-kQn"/>
                                             <action selector="enterButton:" destination="QBQ-pf-cOv" eventType="touchUpInside" id="hcb-ay-zad"/>
@@ -71,6 +72,7 @@
                                     <constraint firstItem="FGG-tg-eeO" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="zgL-Fn-PNe"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="numberText" destination="VKZ-S2-f39" id="jNU-jc-uX2"/>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
                                 </connections>
                             </view>
