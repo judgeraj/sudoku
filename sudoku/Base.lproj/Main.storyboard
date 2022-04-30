@@ -17,9 +17,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBQ-pf-cOv" userLabel="tapGrid" customClass="tapGrid" customModule="sudoku" customModuleProvider="target">
-                                <rect key="frame" x="67" y="229" width="274" height="313"/>
+                                <rect key="frame" x="20" y="69" width="374" height="714"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Row:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0h-tl-xYB">
+                                        <rect key="frame" x="8" y="18" width="38" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Col:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGG-tg-eeO">
+                                        <rect key="frame" x="8" y="66" width="30" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKZ-S2-f39">
+                                        <rect key="frame" x="139" y="53" width="97" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="inputView:" destination="QBQ-pf-cOv" eventType="editingDidEnd" id="g0g-iq-Wjo"/>
+                                            <action selector="inputView:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="kdu-3U-uzV"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Ia-01k">
+                                        <rect key="frame" x="244" y="55" width="67" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <connections>
+                                            <action selector="enterButton:" destination="B9b-Xf-KtK" eventType="touchUpInside" id="b09-4P-kQn"/>
+                                            <action selector="enterButton:" destination="QBQ-pf-cOv" eventType="touchUpInside" id="hcb-ay-zad"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="g0h-tl-xYB" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="3hj-SY-UQY"/>
+                                    <constraint firstAttribute="trailing" secondItem="JwA-Ia-01k" secondAttribute="trailing" constant="63" id="7RO-2A-bCA"/>
+                                    <constraint firstAttribute="bottom" secondItem="FGG-tg-eeO" secondAttribute="bottom" constant="627" id="80M-pE-4aU"/>
+                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="55" id="HFk-ay-dVD"/>
+                                    <constraint firstItem="g0h-tl-xYB" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="18" id="LZl-UC-z2w"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g0h-tl-xYB" secondAttribute="trailing" constant="20" symbolic="YES" id="M2U-gt-0BD"/>
+                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="53" id="RJ6-bW-Swx"/>
+                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="139" id="S0o-EZ-ta1"/>
+                                    <constraint firstItem="FGG-tg-eeO" firstAttribute="top" secondItem="g0h-tl-xYB" secondAttribute="bottom" constant="27" id="SQF-re-JaP"/>
+                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VKZ-S2-f39" secondAttribute="trailing" constant="8" symbolic="YES" id="Szj-J4-fXP"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FGG-tg-eeO" secondAttribute="trailing" constant="20" symbolic="YES" id="Ta3-h4-FQT"/>
+                                    <constraint firstAttribute="trailing" secondItem="VKZ-S2-f39" secondAttribute="trailing" constant="138" id="bjo-lD-00u"/>
+                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.259358" id="h2p-zO-gVF"/>
+                                    <constraint firstAttribute="bottom" secondItem="VKZ-S2-f39" secondAttribute="bottom" constant="627" id="pf7-IQ-m7U"/>
+                                    <constraint firstAttribute="bottom" secondItem="JwA-Ia-01k" secondAttribute="bottom" constant="628" id="yyI-5e-i1E"/>
+                                    <constraint firstItem="FGG-tg-eeO" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="zgL-Fn-PNe"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
                                 </connections>
@@ -28,15 +78,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QBQ-pf-cOv" secondAttribute="bottom" constant="320" id="HDa-JI-pSI"/>
-                            <constraint firstItem="QBQ-pf-cOv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="137:448" id="P0y-CJ-Mh3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QBQ-pf-cOv" secondAttribute="trailing" constant="73" id="Te9-ql-H80"/>
-                            <constraint firstItem="QBQ-pf-cOv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="185" id="t8B-AZ-nSq"/>
-                            <constraint firstItem="QBQ-pf-cOv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="uYe-jO-zHC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QBQ-pf-cOv" secondAttribute="bottom" constant="79" id="HDa-JI-pSI"/>
+                            <constraint firstItem="QBQ-pf-cOv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="137:448" constant="100" id="P0y-CJ-Mh3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QBQ-pf-cOv" secondAttribute="trailing" constant="20" id="Te9-ql-H80"/>
+                            <constraint firstItem="QBQ-pf-cOv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="t8B-AZ-nSq"/>
+                            <constraint firstItem="QBQ-pf-cOv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="uYe-jO-zHC"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="B9b-Xf-KtK" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="MxI-7b-frM">
                     <connections>
                         <action selector="handleTap:" destination="QBQ-pf-cOv" id="6YP-Ib-iHU"/>

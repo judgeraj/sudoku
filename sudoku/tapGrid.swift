@@ -16,6 +16,7 @@ class tapGrid: UIView {
     */
     
     //represents our grid for each cell and what value it should display
+    
     var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,9 +26,18 @@ class tapGrid: UIView {
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    var number: String = ""
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     //((Int(bounds.width)/9)*i)/2),((Int(bounds.height)/9)*i)/2)
+    
+    @IBAction func inputView(_ sender: Any) {
+        
+    }
+    
+    @IBAction func enterButton(_ sender: Any) {
+        
+    }
     
     override func draw(_ rect: CGRect) {
 
@@ -102,6 +112,7 @@ class tapGrid: UIView {
          
          also used for testing whether click was inside the grid and valid
          */
+        
         let w = bounds.width
         let h = bounds.height
         let min = min(w, h)
