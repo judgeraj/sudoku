@@ -13,6 +13,7 @@
 		352D1C58281CE7B300422272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352D1C56281CE7B300422272 /* Main.storyboard */; };
 		352D1C5A281CE7B500422272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 352D1C59281CE7B500422272 /* Assets.xcassets */; };
 		352D1C5D281CE7B500422272 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352D1C5B281CE7B500422272 /* LaunchScreen.storyboard */; };
+		352D1C65281CE96800422272 /* tapGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D1C64281CE96800422272 /* tapGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		352D1C59281CE7B500422272 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		352D1C5C281CE7B500422272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		352D1C5E281CE7B500422272 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		352D1C64281CE96800422272 /* tapGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tapGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				352D1C52281CE7B300422272 /* SceneDelegate.swift */,
 				352D1C54281CE7B300422272 /* ViewController.swift */,
 				352D1C56281CE7B300422272 /* Main.storyboard */,
+				352D1C64281CE96800422272 /* tapGrid.swift */,
 				352D1C59281CE7B500422272 /* Assets.xcassets */,
 				352D1C5B281CE7B500422272 /* LaunchScreen.storyboard */,
 				352D1C5E281CE7B500422272 /* Info.plist */,
@@ -141,6 +144,7 @@
 				352D1C55281CE7B300422272 /* ViewController.swift in Sources */,
 				352D1C51281CE7B300422272 /* AppDelegate.swift in Sources */,
 				352D1C53281CE7B300422272 /* SceneDelegate.swift in Sources */,
+				352D1C65281CE96800422272 /* tapGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
