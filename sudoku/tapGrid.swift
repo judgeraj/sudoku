@@ -26,6 +26,7 @@ class tapGrid: UIView {
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
     var number: String = ""
     var row: Int = 0
     var col: Int = 0
@@ -33,23 +34,9 @@ class tapGrid: UIView {
     // An empty implementation adversely affects performance during animation.
     //((Int(bounds.width)/9)*i)/2),((Int(bounds.height)/9)*i)/2)
     
-    let easyDiff = Int.random(in: 60...70)
+    let easyDiff = Int.random(in: 80...90)
     let mediumDiff = Int.random(in: 50...60)
-    let hardDiff = Int.random(in: 40...50)
-    
-    
-    //              [[row],[col]]
-    let blockOne = [[0,1,2],[0,1,2]]
-    let blockTwo = [[3,4,5],[0,1,2]]
-    let blockThree = [[6,7,8],[0,1,2]]
-    
-    let blockFour = [[0,1,2],[3,4,5]]
-    let blockFive = [[3,4,5],[3,4,5]]
-    let blockSix = [[6,7,8],[3,4,5]]
-    
-    let blockSeven = [[0,1,2],[6,7,8]]
-    let blockEight = [[3,4,5],[6,7,8]]
-    let blockNine = [[6,7,8],[6,7,8]]
+    let hardDiff = Int.random(in: 20...30)
     
     var boardRand = false
     
@@ -71,9 +58,9 @@ class tapGrid: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        //print(checkRow(randRow: 2, cellNum: 3))
+        //print(checkBlck(randRow: 4, randCol: 1, cellNum: 8))
         if(boardRand == false){
-            randomBoard(diff: easyDiff)
+            randomBoard(diff: mediumDiff)
         }
         
 
@@ -169,32 +156,27 @@ class tapGrid: UIView {
             print(row, col)
         }
     }
-    var rowVisited = Set<Int>()
-    var colVisited = Set<Int>()
     
-    func randomNum(row: Int, col: Int, cell: Int) -> Int{
-        rowVisited.insert(cell)
-        colVisited.insert(cell)
+    func randomNum(row: Int, col: Int) -> Int{
         return Int.random(in: row...col)
     }
-    
-    
-    
+
     func randomBoard(diff: Int){
         boardRand = true
         print("diff", diff)
         
         for _ in stride(from: 1, to: diff, by: 1){
             
-            let fixedCellNum = randomNum(row: 1, col: 9, cell: 0)
+            let fixedCellNum = randomNum(row: 1, col: 9)
             
-            let randRow = randomNum(row: 0, col: 8, cell: 0)
-            let randCol = randomNum(row: 0, col: 8, cell: 0)
+            let randRow = randomNum(row: 0, col: 8)
+            let randCol = randomNum(row: 0, col: 8)
             
             if(touchCount[randRow][randCol] == 0){
                 
                 if(!checkRow(randRow: randRow, cellNum: fixedCellNum) &&
-                   !checkCol(randCol: randCol, cellNum: fixedCellNum)){
+                   !checkCol(randCol: randCol, cellNum: fixedCellNum) &&
+                    !checkBlck(randRow: randRow, randCol: randCol, cellNum: fixedCellNum)){
                     touchCount[randRow][randCol] = fixedCellNum
                     
                 }
@@ -203,7 +185,7 @@ class tapGrid: UIView {
         setNeedsDisplay()
     }
     func checkRow(randRow: Int,cellNum: Int) -> Bool{
-        rowVisited = []
+        var rowVisited = Set<Int>()
         for col in 0...8{
             rowVisited.insert(touchCount[randRow][col])
         }
@@ -214,11 +196,33 @@ class tapGrid: UIView {
     }
     
     func checkCol(randCol: Int, cellNum: Int) -> Bool{
-        colVisited = []
+        var colVisited = Set<Int>()
         for row in 0...8{
             colVisited.insert(touchCount[row][randCol])
         }
         if(colVisited.contains(cellNum)){
+            return true
+        }
+        return false
+    }
+    func checkBlck(randRow: Int, randCol: Int, cellNum: Int) -> Bool{
+        var blckVisited = Set<Int>()
+        var tempRow = Set<Int>()
+        var tempCol = Set<Int>()
+
+        let blckRow = randRow == 2 || randRow == 5 || randRow == 8 ? randRow - 2 : randRow == 1 || randRow == 4 || randRow == 7 ? randRow - 1 : randRow
+        let blckCol = randCol == 2 || randCol == 5 || randCol == 8 ? randCol - 2 : randCol == 1 || randCol == 4 || randCol == 7 ? randCol - 1 : randCol
+        print(blckRow, blckCol)
+        for xrow in blckRow...(blckRow + 2){
+            for xcol in blckCol...(blckCol + 2){
+                blckVisited.insert(touchCount[xrow][xcol])
+                tempCol.insert(xcol)
+            }
+            tempRow.insert(xrow)
+        }
+        print(tempRow, tempCol)
+        print(blckVisited)
+        if(blckVisited.contains(cellNum)){
             return true
         }
         return false
