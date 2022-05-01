@@ -17,7 +17,7 @@ class tapGrid: UIView {
     
     //represents our grid for each cell and what value it should display
     
-    var touchCount = [[0, 2, 0, 0, 0, 0, 0, 0, 0],
+    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,7 +25,7 @@ class tapGrid: UIView {
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [3, 0, 0, 0, 0, 0, 0, 0, 0]]
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
     var number: String = ""
     var row: Int = 0
     var col: Int = 0
@@ -33,9 +33,9 @@ class tapGrid: UIView {
     // An empty implementation adversely affects performance during animation.
     //((Int(bounds.width)/9)*i)/2),((Int(bounds.height)/9)*i)/2)
     
-    let easyDiff = Int.random(in: 40...50)
-    let mediumDiff = Int.random(in: 30...40)
-    let hardDiff = Int.random(in: 20...30)
+    let easyDiff = Int.random(in: 60...70)
+    let mediumDiff = Int.random(in: 50...60)
+    let hardDiff = Int.random(in: 40...50)
     
     
     //              [[row],[col]]
@@ -71,10 +71,10 @@ class tapGrid: UIView {
     
     override func draw(_ rect: CGRect) {
         
-        //print(checkRow(randRow: 0, cellNum: 2))
-//        if(boardRand == false){
-//            randomBoard(diff: easyDiff)
-//        }
+        //print(checkRow(randRow: 2, cellNum: 3))
+        if(boardRand == false){
+            randomBoard(diff: easyDiff)
+        }
         
 
         //GETTING WIDTH/HEIGHT AND MIN SIDE
@@ -170,54 +170,57 @@ class tapGrid: UIView {
         }
     }
     var rowVisited = Set<Int>()
+    var colVisited = Set<Int>()
+    
     func randomNum(row: Int, col: Int, cell: Int) -> Int{
-        if( cell != 0 ){
-            var newInt = 0
-            repeat {
-                newInt = Int.random(in: row...col);
-                
-            }while(rowVisited.contains(newInt))
-            return newInt
-        }
+        rowVisited.insert(cell)
+        colVisited.insert(cell)
         return Int.random(in: row...col)
     }
     
     
     
     func randomBoard(diff: Int){
-        
-        // 9x9 = 81
-        //
         boardRand = true
-        for _ in stride(from: 0, to: diff, by: 1){
+        print("diff", diff)
+        
+        for _ in stride(from: 1, to: diff, by: 1){
+            
             let fixedCellNum = randomNum(row: 1, col: 9, cell: 0)
+            
             let randRow = randomNum(row: 0, col: 8, cell: 0)
             let randCol = randomNum(row: 0, col: 8, cell: 0)
             
             if(touchCount[randRow][randCol] == 0){
-                if(checkRow(randCol: randCol, cellNum: fixedCellNum) == false){
-                    rowVisited.insert(fixedCellNum)
-                    
-                    touchCount[randRow][randCol] = fixedCellNum
-                    //print(fixedCellNum)
-                    print(randRow, randCol)
-                }
-                else{
-                    touchCount[randCol][randRow] = randomNum(row: 1, col: 9, cell: fixedCellNum)
-                    print("trye", fixedCellNum)
-                    print(randRow, randCol)
-                }
                 
+                if(!checkRow(randRow: randRow, cellNum: fixedCellNum) &&
+                   !checkCol(randCol: randCol, cellNum: fixedCellNum)){
+                    touchCount[randRow][randCol] = fixedCellNum
+                    
+                }
             }
         }
+        setNeedsDisplay()
     }
-    func checkRow(randCol: Int,cellNum: Int) -> Bool{
-        for row in 0...8{
-            if(touchCount[row][randCol] == cellNum){
-                return true
-            }
+    func checkRow(randRow: Int,cellNum: Int) -> Bool{
+        rowVisited = []
+        for col in 0...8{
+            rowVisited.insert(touchCount[randRow][col])
+        }
+        if(rowVisited.contains(cellNum)){
+            return true
         }
         return false
     }
     
+    func checkCol(randCol: Int, cellNum: Int) -> Bool{
+        colVisited = []
+        for row in 0...8{
+            colVisited.insert(touchCount[row][randCol])
+        }
+        if(colVisited.contains(cellNum)){
+            return true
+        }
+        return false
+    }
 }
