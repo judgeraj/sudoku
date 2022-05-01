@@ -69,6 +69,10 @@ class tapGrid: UIView {
     
     @IBOutlet weak var numberText: UITextField!
     
+    /*
+     If the user hits the reset button just call the reset function
+     */
+    
     @IBAction func resetButton(_ sender: Any) {
         resetGame()
     }
@@ -298,6 +302,12 @@ class tapGrid: UIView {
         }
         return blckVisited.contains(cellNum) ? true : false
     }
+    
+    /*
+     function will reset the 2d game board to all 0's
+     the then update boardstate and generate a random board
+     by calling randomBoard function
+     */
     
     func resetGame() {
         touchCount =      [[0, 0, 0, 0, 0, 0, 0, 0, 0],
