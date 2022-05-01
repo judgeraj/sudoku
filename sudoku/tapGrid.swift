@@ -18,16 +18,40 @@ class tapGrid: UIView {
     //represents our grid for each cell and what value it should display
     @IBOutlet weak var rowLabel: UILabel!
     @IBOutlet weak var colLabel: UILabel!
+
     
-    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    //playable randomized array
+//    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    
+    //winnable test array
+    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
+                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
+                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
+                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
+                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
+                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
+                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
+                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
+                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
+    
+    //checks if full
+//    var touchCount = [[1, 3, 8, 4, 1, 1, 5, 6, 7],
+//                      [2, 3, 9, 4, 1, 2, 3, 1, 8],
+//                      [3, 4, 7, 4, 3, 3, 6, 2, 9],
+//                      [4, 5, 5, 5, 4, 4, 5, 4, 7],
+//                      [3, 3, 4, 4, 6, 7, 4, 5, 6],
+//                      [5, 4, 5, 6, 8, 9, 4, 2, 5],
+//                      [2, 5, 6, 5, 4, 6, 4, 3, 4],
+//                      [3, 6, 8, 4, 4, 7, 4, 3, 3],
+//                      [6, 7, 4, 3, 5, 8, 4, 3, 2]]
 
     var number: String = ""
     var row: Int = 0
@@ -41,6 +65,7 @@ class tapGrid: UIView {
     let hardDiff = Int.random(in: 20...30)
     
     var boardRand = false
+    var isFull = Set<Int>()
     
     @IBOutlet weak var numberText: UITextField!
     
@@ -51,9 +76,11 @@ class tapGrid: UIView {
         
         if(num != nil) {
             if((num! > 0) && (num! < 10)) {
-                if !checkCol(randCol: col, cellNum: num!) && !checkRow(randRow: row, cellNum: num!) && !checkBlck(randRow: row, randCol: col, cellNum: num!){
+                if !checkCol(randCol: col, cellNum: num!) && !checkRow(randRow: row, cellNum: num!) &&
+                    !checkBlck(randRow: row, randCol: col, cellNum: num!) && !checkFull(){
                     touchCount[row][col] = num!
                     numberText.text = ""
+                    print(checkWin())
                 }
             }
         }
@@ -66,7 +93,6 @@ class tapGrid: UIView {
         if(boardRand == false){
             randomBoard(diff: mediumDiff)
         }
-        
 
         //GETTING WIDTH/HEIGHT AND MIN SIDE
         let width = bounds.width
@@ -191,6 +217,44 @@ class tapGrid: UIView {
         }
         setNeedsDisplay()
     }
+    //get all the elements inside the 2D array
+    func getBoardState(){
+        for row in 0...8{
+            for col in 0...8{
+                isFull.insert(touchCount[row][col])
+            }
+        }
+    }
+    
+    //checks the board if empty
+    func checkEmpty() -> Bool{
+        getBoardState()
+        
+        //checks if matrix only contains zeros
+        if(!isFull.contains(0) && isFull.count == 1){
+            return true
+        }
+        isFull = Set<Int>()
+        return false
+    }
+    
+    //checks the board if full
+    func checkFull() -> Bool{
+        getBoardState()
+        
+        //checks if there are no empty slot
+        if(!isFull.contains(0)){
+            print(isFull)
+            return true
+        }
+        isFull = Set<Int>()
+        return false
+    }
+    
+    func checkWin () -> Bool{
+        return !checkFull() && checkEmpty() ? false : true
+    }
+    
     func checkRow(randRow: Int,cellNum: Int) -> Bool{
         var rowVisited = Set<Int>()
         for col in 0...8{
@@ -219,7 +283,6 @@ class tapGrid: UIView {
 
         let blckRow = randRow == 2 || randRow == 5 || randRow == 8 ? randRow - 2 : randRow == 1 || randRow == 4 || randRow == 7 ? randRow - 1 : randRow
         let blckCol = randCol == 2 || randCol == 5 || randCol == 8 ? randCol - 2 : randCol == 1 || randCol == 4 || randCol == 7 ? randCol - 1 : randCol
-        print(blckRow, blckCol)
         for xrow in blckRow...(blckRow + 2){
             for xcol in blckCol...(blckCol + 2){
                 blckVisited.insert(touchCount[xrow][xcol])
@@ -227,8 +290,8 @@ class tapGrid: UIView {
             }
             tempRow.insert(xrow)
         }
-        print(tempRow, tempCol)
-        print(blckVisited)
+//        print(tempRow, tempCol)
+//        print(blckVisited)
         if(blckVisited.contains(cellNum)){
             return true
         }
