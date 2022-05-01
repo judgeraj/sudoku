@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Num" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKZ-S2-f39">
-                                        <rect key="frame" x="139" y="53" width="97" height="34"/>
+                                        <rect key="frame" x="132" y="637" width="97" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -41,8 +41,14 @@
                                             <action selector="textField:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="BlH-xp-oAh"/>
                                         </connections>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAX-fO-KPE">
+                                        <rect key="frame" x="49" y="128" width="262" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Ia-01k">
-                                        <rect key="frame" x="252.5" y="55" width="58.5" height="31"/>
+                                        <rect key="frame" x="252.5" y="639" width="58.5" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Enter"/>
                                         <connections>
@@ -57,18 +63,21 @@
                                     <constraint firstItem="g0h-tl-xYB" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="3hj-SY-UQY"/>
                                     <constraint firstAttribute="trailing" secondItem="JwA-Ia-01k" secondAttribute="trailing" constant="63" id="7RO-2A-bCA"/>
                                     <constraint firstAttribute="bottom" secondItem="FGG-tg-eeO" secondAttribute="bottom" constant="627" id="80M-pE-4aU"/>
-                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="55" id="HFk-ay-dVD"/>
+                                    <constraint firstItem="YAX-fO-KPE" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="128" id="EK8-TE-8qq"/>
+                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="639" id="HFk-ay-dVD"/>
                                     <constraint firstItem="g0h-tl-xYB" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="18" id="LZl-UC-z2w"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g0h-tl-xYB" secondAttribute="trailing" constant="20" symbolic="YES" id="M2U-gt-0BD"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="53" id="RJ6-bW-Swx"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="139" id="S0o-EZ-ta1"/>
+                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="637" id="RJ6-bW-Swx"/>
                                     <constraint firstItem="FGG-tg-eeO" firstAttribute="top" secondItem="g0h-tl-xYB" secondAttribute="bottom" constant="27" id="SQF-re-JaP"/>
                                     <constraint firstItem="JwA-Ia-01k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VKZ-S2-f39" secondAttribute="trailing" constant="8" symbolic="YES" id="Szj-J4-fXP"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FGG-tg-eeO" secondAttribute="trailing" constant="20" symbolic="YES" id="Ta3-h4-FQT"/>
-                                    <constraint firstAttribute="trailing" secondItem="VKZ-S2-f39" secondAttribute="trailing" constant="138" id="bjo-lD-00u"/>
+                                    <constraint firstItem="YAX-fO-KPE" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="49" id="Zbc-pE-xSe"/>
+                                    <constraint firstAttribute="trailing" secondItem="YAX-fO-KPE" secondAttribute="trailing" constant="63" id="aQt-vy-gG3"/>
+                                    <constraint firstAttribute="trailing" secondItem="VKZ-S2-f39" secondAttribute="trailing" constant="145" id="bjo-lD-00u"/>
                                     <constraint firstItem="VKZ-S2-f39" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.259358" id="h2p-zO-gVF"/>
-                                    <constraint firstAttribute="bottom" secondItem="VKZ-S2-f39" secondAttribute="bottom" constant="627" id="pf7-IQ-m7U"/>
-                                    <constraint firstAttribute="bottom" secondItem="JwA-Ia-01k" secondAttribute="bottom" constant="628" id="yyI-5e-i1E"/>
+                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="132" id="j0b-jn-Ovs"/>
+                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="YAX-fO-KPE" secondAttribute="bottom" constant="488" id="swT-Mi-qSi"/>
+                                    <constraint firstAttribute="bottom" secondItem="JwA-Ia-01k" secondAttribute="bottom" constant="44" id="yyI-5e-i1E"/>
                                     <constraint firstItem="FGG-tg-eeO" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="zgL-Fn-PNe"/>
                                 </constraints>
                                 <connections>
