@@ -18,29 +18,29 @@ class tapGrid: UIView {
     //represents our grid for each cell and what value it should display
     @IBOutlet weak var rowLabel: UILabel!
     @IBOutlet weak var colLabel: UILabel!
-
+    @IBOutlet weak var messageBox: UILabel!
     
     //playable randomized array
-//    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
     
     //winnable test array
-    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
-                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
-                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
-                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
-                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
-                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
-                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
-                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
-                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
+//    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
+//                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
+//                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
+//                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
+//                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
+//                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
+//                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
+//                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
+//                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
     
     //checks if full
 //    var touchCount = [[1, 3, 8, 4, 1, 1, 5, 6, 7],
@@ -78,9 +78,16 @@ class tapGrid: UIView {
             if((num! > 0) && (num! < 10)) {
                 if !checkCol(randCol: col, cellNum: num!) && !checkRow(randRow: row, cellNum: num!) &&
                     !checkBlck(randRow: row, randCol: col, cellNum: num!) && !checkFull(){
+                    messageBox.text = "Continue"
+                    messageBox.textColor = .black
+                    messageBox.backgroundColor = .clear
                     touchCount[row][col] = num!
                     numberText.text = ""
                     print(checkWin())
+                } else {
+                    messageBox.text = "Invalid number: Similar Number."
+                    messageBox.textColor = .red
+                    messageBox.backgroundColor = .cyan
                 }
             }
         }

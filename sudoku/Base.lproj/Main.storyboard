@@ -41,7 +41,7 @@
                                             <action selector="textField:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="BlH-xp-oAh"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAX-fO-KPE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAX-fO-KPE">
                                         <rect key="frame" x="49" y="128" width="262" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -82,6 +82,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="colLabel" destination="FGG-tg-eeO" id="Nf5-3R-rlk"/>
+                                    <outlet property="messageBox" destination="YAX-fO-KPE" id="zRd-ee-xeD"/>
                                     <outlet property="numberText" destination="VKZ-S2-f39" id="jNU-jc-uX2"/>
                                     <outlet property="rowLabel" destination="g0h-tl-xYB" id="a6d-iw-sLX"/>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
