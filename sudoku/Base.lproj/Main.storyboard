@@ -72,7 +72,9 @@
                                     <constraint firstItem="FGG-tg-eeO" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="zgL-Fn-PNe"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="colLabel" destination="FGG-tg-eeO" id="Nf5-3R-rlk"/>
                                     <outlet property="numberText" destination="VKZ-S2-f39" id="jNU-jc-uX2"/>
+                                    <outlet property="rowLabel" destination="g0h-tl-xYB" id="a6d-iw-sLX"/>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
                                 </connections>
                             </view>

@@ -16,6 +16,8 @@ class tapGrid: UIView {
     */
     
     //represents our grid for each cell and what value it should display
+    @IBOutlet weak var rowLabel: UILabel!
+    @IBOutlet weak var colLabel: UILabel!
     
     var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -152,6 +154,9 @@ class tapGrid: UIView {
         if (tapPoint.y > CGFloat(yAdjust) && tapPoint.y < CGFloat(min + CGFloat(yAdjust))) && (tapPoint.x > CGFloat(xAdjust) && tapPoint.x < min + CGFloat(xAdjust)) {
             col = innercol
             row = innerrow
+            colLabel.text = "Col: " + String(col)
+            rowLabel.text = "Row: " + String(row)
+            
             print(innerrow, innercol)
             print(row, col)
         }
