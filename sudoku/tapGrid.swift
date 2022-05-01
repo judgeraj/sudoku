@@ -93,6 +93,7 @@ class tapGrid: UIView {
         if(boardRand == false){
             randomBoard(diff: mediumDiff)
         }
+        print("draw",checkWin())
 
         //GETTING WIDTH/HEIGHT AND MIN SIDE
         let width = bounds.width
@@ -231,7 +232,7 @@ class tapGrid: UIView {
         getBoardState()
         
         //checks if matrix only contains zeros
-        if(!isFull.contains(0) && isFull.count == 1){
+        if(isFull.contains(0) && isFull.count == 1){
             return true
         }
         isFull = Set<Int>()
@@ -252,7 +253,7 @@ class tapGrid: UIView {
     }
     
     func checkWin () -> Bool{
-        return !checkFull() && checkEmpty() ? false : true
+        return checkFull() && !checkEmpty() ? true : false
     }
     
     func checkRow(randRow: Int,cellNum: Int) -> Bool{
@@ -260,10 +261,7 @@ class tapGrid: UIView {
         for col in 0...8{
             rowVisited.insert(touchCount[randRow][col])
         }
-        if(rowVisited.contains(cellNum)){
-            return true
-        }
-        return false
+        return rowVisited.contains(cellNum) ? true : false
     }
     
     func checkCol(randCol: Int, cellNum: Int) -> Bool{
@@ -271,30 +269,18 @@ class tapGrid: UIView {
         for row in 0...8{
             colVisited.insert(touchCount[row][randCol])
         }
-        if(colVisited.contains(cellNum)){
-            return true
-        }
-        return false
+        return colVisited.contains(cellNum) ? true : false
     }
     func checkBlck(randRow: Int, randCol: Int, cellNum: Int) -> Bool{
         var blckVisited = Set<Int>()
-        var tempRow = Set<Int>()
-        var tempCol = Set<Int>()
 
         let blckRow = randRow == 2 || randRow == 5 || randRow == 8 ? randRow - 2 : randRow == 1 || randRow == 4 || randRow == 7 ? randRow - 1 : randRow
         let blckCol = randCol == 2 || randCol == 5 || randCol == 8 ? randCol - 2 : randCol == 1 || randCol == 4 || randCol == 7 ? randCol - 1 : randCol
         for xrow in blckRow...(blckRow + 2){
             for xcol in blckCol...(blckCol + 2){
                 blckVisited.insert(touchCount[xrow][xcol])
-                tempCol.insert(xcol)
             }
-            tempRow.insert(xrow)
         }
-//        print(tempRow, tempCol)
-//        print(blckVisited)
-        if(blckVisited.contains(cellNum)){
-            return true
-        }
-        return false
+        return blckVisited.contains(cellNum) ? true : false
     }
 }
