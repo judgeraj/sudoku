@@ -51,8 +51,10 @@ class tapGrid: UIView {
         
         if(num != nil) {
             if((num! > 0) && (num! < 10)) {
-                touchCount[row][col] = num!
-                numberText.text = ""
+                if !checkCol(randCol: col, cellNum: num!) && !checkRow(randRow: row, cellNum: num!) && !checkBlck(randRow: row, randCol: col, cellNum: num!){
+                    touchCount[row][col] = num!
+                    numberText.text = ""
+                }
             }
         }
         setNeedsDisplay()
