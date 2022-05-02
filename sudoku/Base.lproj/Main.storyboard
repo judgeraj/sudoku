@@ -31,18 +31,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Num" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKZ-S2-f39">
-                                        <rect key="frame" x="132" y="637" width="96.333333333333314" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="inputView:" destination="QBQ-pf-cOv" eventType="editingDidEnd" id="g0g-iq-Wjo"/>
-                                            <action selector="inputView:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="kdu-3U-uzV"/>
-                                            <action selector="textField:" destination="B9b-Xf-KtK" eventType="editingDidEnd" id="BlH-xp-oAh"/>
-                                        </connections>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudoku" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAX-fO-KPE">
-                                        <rect key="frame" x="49" y="128" width="223" height="21"/>
+                                        <rect key="frame" x="49" y="128" width="223" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -56,18 +46,6 @@
                                         <connections>
                                             <action selector="resetButton:" destination="QBQ-pf-cOv" eventType="touchUpInside" id="2WU-8y-WLI"/>
                                             <action selector="resetButton:" destination="B9b-Xf-KtK" eventType="touchUpInside" id="d0A-YS-kFL"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwA-Ia-01k">
-                                        <rect key="frame" x="262.33333333333331" y="639" width="65.666666666666686" height="27.333333333333371"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="27.333333333333371" id="ykF-U9-J3c"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Enter"/>
-                                        <connections>
-                                            <action selector="enterButton:" destination="B9b-Xf-KtK" eventType="touchUpInside" id="b09-4P-kQn"/>
-                                            <action selector="enterButton:" destination="QBQ-pf-cOv" eventType="touchUpInside" id="hcb-ay-zad"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timer: 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zws-GK-kVB">
@@ -90,27 +68,15 @@
                                     <constraint firstItem="FGG-tg-eeO" firstAttribute="top" secondItem="g0h-tl-xYB" secondAttribute="bottom" constant="27" id="Xgc-WF-OWf"/>
                                     <constraint firstItem="YAX-fO-KPE" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="49" id="Zbc-pE-xSe"/>
                                     <constraint firstAttribute="trailing" secondItem="YAX-fO-KPE" secondAttribute="trailing" constant="63" id="aQt-vy-gG3"/>
-                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="height" secondItem="QBQ-pf-cOv" secondAttribute="height" multiplier="0.038552" id="bhT-IF-4uZ"/>
                                     <constraint firstItem="zws-GK-kVB" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" id="bzX-gR-FbR"/>
-                                    <constraint firstAttribute="bottom" secondItem="JwA-Ia-01k" secondAttribute="bottom" constant="42.666666666666629" id="dLj-Zk-BX8"/>
                                     <constraint firstItem="5PE-xG-a6F" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.200535" id="dtO-oL-5XA"/>
-                                    <constraint firstAttribute="trailing" secondItem="JwA-Ia-01k" secondAttribute="trailing" constant="7" id="fBI-UQ-3vo"/>
                                     <constraint firstItem="5PE-xG-a6F" firstAttribute="top" secondItem="g0h-tl-xYB" secondAttribute="top" id="fI9-CJ-1Vd"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.287562" id="nFC-mo-zgx"/>
-                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.19602" id="nyi-Ys-Ktu"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="height" secondItem="QBQ-pf-cOv" secondAttribute="height" multiplier="0.0479549" id="pt9-xz-moR"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="zws-GK-kVB" secondAttribute="bottom" constant="64" id="q9P-EP-xZS"/>
-                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="top" secondItem="zws-GK-kVB" secondAttribute="bottom" constant="66" id="qgC-jr-iry"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="132" id="qtg-Qp-dB0"/>
-                                    <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="YAX-fO-KPE" secondAttribute="bottom" constant="488" id="swT-Mi-qSi"/>
                                     <constraint firstItem="YAX-fO-KPE" firstAttribute="top" secondItem="5PE-xG-a6F" secondAttribute="bottom" constant="79" id="vV4-R5-cmf"/>
-                                    <constraint firstItem="JwA-Ia-01k" firstAttribute="leading" secondItem="VKZ-S2-f39" secondAttribute="trailing" constant="34" id="wUR-SN-B3D"/>
                                     <constraint firstItem="FGG-tg-eeO" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="zgL-Fn-PNe"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="colLabel" destination="FGG-tg-eeO" id="Nf5-3R-rlk"/>
                                     <outlet property="messageBox" destination="YAX-fO-KPE" id="zRd-ee-xeD"/>
-                                    <outlet property="numberText" destination="VKZ-S2-f39" id="jNU-jc-uX2"/>
                                     <outlet property="rowLabel" destination="g0h-tl-xYB" id="a6d-iw-sLX"/>
                                     <outlet property="timerLabel" destination="zws-GK-kVB" id="Ncz-oO-vsr"/>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
@@ -135,11 +101,7 @@
                         <action selector="handleTap:" destination="QBQ-pf-cOv" id="6YP-Ib-iHU"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="Mvv-Le-OMM">
-                    <connections>
-                        <action selector="doubleTap:" destination="QBQ-pf-cOv" id="7qC-GM-zug"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Mvv-Le-OMM"/>
             </objects>
             <point key="canvasLocation" x="-0.80000000000000004" y="8.1280788177339911"/>
         </scene>
