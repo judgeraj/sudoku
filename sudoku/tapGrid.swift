@@ -21,26 +21,26 @@ class tapGrid: UIView {
     @IBOutlet weak var messageBox: UILabel!
     
     //playable randomized array
-    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+//    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
     
     //winnable test array
-//    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
-//                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
-//                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
-//                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
-//                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
-//                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
-//                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
-//                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
-//                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
+    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
+                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
+                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
+                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
+                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
+                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
+                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
+                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
+                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
     
     //checks if full
 //    var touchCount = [[1, 3, 8, 4, 1, 1, 5, 6, 7],
@@ -86,26 +86,20 @@ class tapGrid: UIView {
             if((num! > 0) && (num! < 10)) {
                 if !checkCol(randCol: col, cellNum: num!) && !checkRow(randRow: row, cellNum: num!) &&
                     !checkBlck(randRow: row, randCol: col, cellNum: num!) && !checkFull(){
-                    messageBox.text = "Continue"
+                    messageBox.text = "Valid Move"
                     messageBox.textColor = .black
-                    messageBox.backgroundColor = .clear
+//                    messageBox.backgroundColor = .clear
                     touchCount[row][col] = num!
                     numberText.text = ""
                     
-                    if checkWin() {
-                        self.messageBox.text = "Winner: Resetting Game"
-                        self.messageBox.textColor = .green
-                        self.messageBox.backgroundColor = .clear
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                            self.resetGame()
-                        }
-                    }
-                    
                 } else {
-                    messageBox.text = "Invalid number: Similar Number."
+                    messageBox.text = "Invalid Move: Similar Number."
                     messageBox.textColor = .red
-                    messageBox.backgroundColor = .cyan
+//                    messageBox.backgroundColor = .cyan
                 }
+            } else {
+                messageBox.text = "Invalid Number"
+                messageBox.textColor = .red
             }
         }
         setNeedsDisplay()
@@ -180,8 +174,17 @@ class tapGrid: UIView {
             row = 0
             col += 1
         }
+        if checkWin() {
+            self.messageBox.text = "Winner: Resetting Game"
+            self.messageBox.textColor = .green
+            self.messageBox.backgroundColor = .clear
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.resetGame()
+            }
+        }
         
     }
+    
     @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
         
         /*
@@ -326,7 +329,11 @@ class tapGrid: UIView {
                           [0, 0, 0, 0, 0, 0, 0, 0, 0]]
         
         getBoardState()
-        randomBoard(diff: mediumDiff)
+        let randomDiff = [easyDiff, mediumDiff, hardDiff]
+        randomBoard(diff: randomDiff.randomElement()!)
+        messageBox.text = "New Game random diff"
+        messageBox.textColor = .black
+//        messageBox.backgroundColor = .clear
         
     }
     
