@@ -21,27 +21,27 @@ class tapGrid: UIView {
     @IBOutlet weak var messageBox: UILabel!
     
     //playable randomized array
-//    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-//                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
     
     //winnable test array
-    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
-                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
-                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
-                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
-                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
-                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
-                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
-                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
-                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
-    
+//    var touchCount = [[0, 2, 3, 7, 8, 9, 4, 5, 6],
+//                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
+//                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
+//                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
+//                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
+//                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
+//                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
+//                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
+//                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
+//
     //checks if full
 //    var touchCount = [[1, 3, 8, 4, 1, 1, 5, 6, 7],
 //                      [2, 3, 9, 4, 1, 2, 3, 1, 8],
@@ -53,6 +53,15 @@ class tapGrid: UIView {
 //                      [3, 6, 8, 4, 4, 7, 4, 3, 3],
 //                      [6, 7, 4, 3, 5, 8, 4, 3, 2]]
 
+    var initialBoardstate = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                              [0, 0, 0, 0, 0, 0, 0, 0, 0]]
     var number: String = ""
     var row: Int = 0
     var col: Int = 0
@@ -65,6 +74,7 @@ class tapGrid: UIView {
     let hardDiff = Int.random(in: 20...30)
     
     var boardRand = false
+
     var isFull = Set<Int>()
     
     @IBOutlet weak var numberText: UITextField!
@@ -107,6 +117,8 @@ class tapGrid: UIView {
     
     override func draw(_ rect: CGRect) {
         
+         print(touchCount)
+        print(initialBoardstate)
         //print(checkBlck(randRow: 4, randCol: 1, cellNum: 8))
         if(boardRand == false){
             randomBoard(diff: mediumDiff)
@@ -142,8 +154,13 @@ class tapGrid: UIView {
             UIColor.black.setStroke()
             line.stroke()
         }
+        
         //USING YOUR HINT FROM THE WRITE UP
         let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: minSide/9),
+        .foregroundColor: UIColor.systemCyan
+        ]
+        let initAtt: [NSAttributedString.Key : Any] = [
             .font: UIFont.systemFont(ofSize: minSide/9),
         .foregroundColor: UIColor.black
         ]
@@ -167,7 +184,10 @@ class tapGrid: UIView {
         for i in stride(from: 0, through: minSide - mul, by: mul) {
             for j in stride(from: 0, through: minSide - mul, by: mul) {
                 let index = touchCount[row][col]
+                let initial = initialBoardstate[row][col]
                 numbers[index].draw(at: CGPoint(x: (i + CGFloat(xAdjust) + (mul - (numbers[index].size(withAttributes: attributes).width))/2), y: j + CGFloat(yAdjust) + (mul - (numbers[index].size(withAttributes: attributes).height))/2), withAttributes: attributes)
+                
+                numbers[initial].draw(at: CGPoint(x: (i + CGFloat(xAdjust) + (mul - (numbers[initial].size(withAttributes: initAtt).width))/2), y: j + CGFloat(yAdjust) + (mul - (numbers[initial].size(withAttributes: initAtt).height))/2), withAttributes: initAtt)
 //                print(col)
                 row += 1
             }
@@ -186,7 +206,6 @@ class tapGrid: UIView {
     }
     
     @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
-        
         /*
          These calculations are needed for
          determining valid click inside the grid
@@ -239,6 +258,7 @@ class tapGrid: UIView {
                    !checkCol(randCol: randCol, cellNum: fixedCellNum) &&
                     !checkBlck(randRow: randRow, randCol: randCol, cellNum: fixedCellNum)){
                     touchCount[randRow][randCol] = fixedCellNum
+                    initialBoardstate[randRow][randCol] = fixedCellNum
                     
                 }
             }
@@ -327,6 +347,16 @@ class tapGrid: UIView {
                           [0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0],
                           [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+        
+        initialBoardstate = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0]]
         
         getBoardState()
         let randomDiff = [easyDiff, mediumDiff, hardDiff]
