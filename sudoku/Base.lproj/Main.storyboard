@@ -104,11 +104,12 @@
                                     <outlet property="numberText" destination="VKZ-S2-f39" id="jNU-jc-uX2"/>
                                     <outlet property="rowLabel" destination="g0h-tl-xYB" id="a6d-iw-sLX"/>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
+                                    <outletCollection property="gestureRecognizers" destination="Mvv-Le-OMM" appends="YES" id="GFM-ED-vY5"/>
                                 </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QBQ-pf-cOv" secondAttribute="bottom" constant="79" id="HDa-JI-pSI"/>
                             <constraint firstItem="QBQ-pf-cOv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="137:448" constant="100" id="P0y-CJ-Mh3"/>
@@ -125,16 +126,18 @@
                         <action selector="handleTap:" destination="QBQ-pf-cOv" id="6YP-Ib-iHU"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Mvv-Le-OMM">
+                    <connections>
+                        <action selector="doubleTap:" destination="QBQ-pf-cOv" id="7qC-GM-zug"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="67.633928571428569"/>
+            <point key="canvasLocation" x="0.0" y="9"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

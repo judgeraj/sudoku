@@ -117,18 +117,14 @@ class tapGrid: UIView {
     
     override func draw(_ rect: CGRect) {
         
-         print(touchCount)
-        print(initialBoardstate)
-        //print(checkBlck(randRow: 4, randCol: 1, cellNum: 8))
         if(boardRand == false){
             randomBoard(diff: mediumDiff)
         }
-        print("draw",checkWin())
 
         //GETTING WIDTH/HEIGHT AND MIN SIDE
         let width = bounds.width
         let height = bounds.height
-        let minSide = min(width, height)
+        let minSide = Swift.min(width, height)
     
         let sub = (minSide == height) ? width : height
         
@@ -188,7 +184,7 @@ class tapGrid: UIView {
                 numbers[index].draw(at: CGPoint(x: (i + CGFloat(xAdjust) + (mul - (numbers[index].size(withAttributes: attributes).width))/2), y: j + CGFloat(yAdjust) + (mul - (numbers[index].size(withAttributes: attributes).height))/2), withAttributes: attributes)
                 
                 numbers[initial].draw(at: CGPoint(x: (i + CGFloat(xAdjust) + (mul - (numbers[initial].size(withAttributes: initAtt).width))/2), y: j + CGFloat(yAdjust) + (mul - (numbers[initial].size(withAttributes: initAtt).height))/2), withAttributes: initAtt)
-//                print(col)
+
                 row += 1
             }
             row = 0
@@ -204,7 +200,26 @@ class tapGrid: UIView {
         }
         
     }
+    var w: CGFloat = 0.0
+    var h: CGFloat = 0.0
+    var min: CGFloat = 0.0
+    var sub: CGFloat = 0.0
+    var mul: CGFloat = 0.0//MULTIPLIER FOR LINE SPACING
+    var yAdjust: Int = 0 //PADDING FOR Y AXIS
+    var xAdjust: Int = 0
+    var tapPoint = CGPoint(x: 0.0, y: 0.0)
+    var innercol: Int = 0
+    var innerrow: Int = 0
     
+    //double tap deletes the inputted number on the board
+    @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
+        if (tapPoint.y > CGFloat(yAdjust) && tapPoint.y < CGFloat(min + CGFloat(yAdjust))) && (tapPoint.x > CGFloat(xAdjust) && tapPoint.x < min + CGFloat(xAdjust)) {
+            if(touchCount[row][col] != 0 && initialBoardstate[row][col] == 0){
+                touchCount[row][col] = 0
+            }
+        }
+        setNeedsDisplay()
+    }
     @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
         /*
          These calculations are needed for
@@ -214,16 +229,16 @@ class tapGrid: UIView {
          also used for testing whether click was inside the grid and valid
          */
         
-        let w = bounds.width
-        let h = bounds.height
-        let min = min(w, h)
-        let sub = (min == h) ? w : h
-        let mul = min/9 //MULTIPLIER FOR LINE SPACING
-        let yAdjust = (min == h) ? 0 : ((Int(sub) - Int(min))/2) //PADDING FOR Y AXIS
-        let xAdjust = (min != h) ? 0 : ((Int(sub) - Int(min))/2)
-        let tapPoint = sender.location(in: self)
-        let innercol = Int(abs(tapPoint.x - CGFloat(xAdjust))/mul)
-        let innerrow = Int(abs((tapPoint.y - CGFloat(yAdjust)))/mul)
+        w = bounds.width
+        h = bounds.height
+        min = Swift.min(w, h)
+        sub = (min == h) ? w : h
+        mul = min/9 //MULTIPLIER FOR LINE SPACING
+        yAdjust = (min == h) ? 0 : ((Int(sub) - Int(min))/2) //PADDING FOR Y AXIS
+        xAdjust = (min != h) ? 0 : ((Int(sub) - Int(min))/2)
+        tapPoint = sender.location(in: self)
+        innercol = Int(abs(tapPoint.x - CGFloat(xAdjust))/mul)
+        innerrow = Int(abs((tapPoint.y - CGFloat(yAdjust)))/mul)
 
         //checking to see if click out of bounds
         if (tapPoint.y > CGFloat(yAdjust) && tapPoint.y < CGFloat(min + CGFloat(yAdjust))) && (tapPoint.x > CGFloat(xAdjust) && tapPoint.x < min + CGFloat(xAdjust)) {
@@ -232,18 +247,18 @@ class tapGrid: UIView {
             colLabel.text = "Col: " + String(col)
             rowLabel.text = "Row: " + String(row)
             
-            print(innerrow, innercol)
             print(row, col)
         }
     }
     
+    /* randomize either the cell number, row number, or column number; depending on what is being passed */
     func randomNum(row: Int, col: Int) -> Int{
         return Int.random(in: row...col)
     }
 
+    /* generates a board with random number in it */
     func randomBoard(diff: Int){
         boardRand = true
-        print("diff", diff)
         
         for _ in stride(from: 1, to: diff, by: 1){
             
@@ -292,17 +307,18 @@ class tapGrid: UIView {
         
         //checks if there are no empty slot
         if(!isFull.contains(0)){
-            print(isFull)
             return true
         }
         isFull = Set<Int>()
         return false
     }
     
+    /* if board is full return true */
     func checkWin () -> Bool{
         return checkFull() && !checkEmpty() ? true : false
     }
     
+    /* checks if the inputted number is valid within that row */
     func checkRow(randRow: Int,cellNum: Int) -> Bool{
         var rowVisited = Set<Int>()
         for col in 0...8{
@@ -311,6 +327,7 @@ class tapGrid: UIView {
         return rowVisited.contains(cellNum) ? true : false
     }
     
+    /* checks if the inputted number is valid within that column */
     func checkCol(randCol: Int, cellNum: Int) -> Bool{
         var colVisited = Set<Int>()
         for row in 0...8{
@@ -318,6 +335,9 @@ class tapGrid: UIView {
         }
         return colVisited.contains(cellNum) ? true : false
     }
+    
+    /* checks the number if valid on a specific 3x3 block
+     */
     func checkBlck(randRow: Int, randCol: Int, cellNum: Int) -> Bool{
         var blckVisited = Set<Int>()
 
