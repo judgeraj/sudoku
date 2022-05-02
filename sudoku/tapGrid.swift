@@ -19,6 +19,7 @@ class tapGrid: UIView {
     @IBOutlet weak var rowLabel: UILabel!
     @IBOutlet weak var colLabel: UILabel!
     @IBOutlet weak var messageBox: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     
     //playable randomized array
     var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -65,6 +66,9 @@ class tapGrid: UIView {
     var number: String = ""
     var row: Int = 0
     var col: Int = 0
+    var timeSec = 0
+    var timeMin = 0
+    var timeHr = 0
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     //((Int(bounds.width)/9)*i)/2),((Int(bounds.height)/9)*i)/2)
@@ -74,9 +78,7 @@ class tapGrid: UIView {
     let hardDiff = Int.random(in: 20...30)
     
     var boardRand = false
-
     var isFull = Set<Int>()
-    
     @IBOutlet weak var numberText: UITextField!
     
     /*
@@ -84,6 +86,9 @@ class tapGrid: UIView {
      */
     
     @IBAction func resetButton(_ sender: Any) {
+        timeSec = 0
+        timeMin = 0
+        timeHr = 0
         resetGame()
     }
     
@@ -119,8 +124,9 @@ class tapGrid: UIView {
         
         if(boardRand == false){
             randomBoard(diff: mediumDiff)
+            _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(gameTimer), userInfo: nil, repeats: true)
         }
-
+        
         //GETTING WIDTH/HEIGHT AND MIN SIDE
         let width = bounds.width
         let height = bounds.height
@@ -260,6 +266,7 @@ class tapGrid: UIView {
     func randomBoard(diff: Int){
         boardRand = true
         
+        
         for _ in stride(from: 1, to: diff, by: 1){
             
             let fixedCellNum = randomNum(row: 1, col: 9)
@@ -385,6 +392,20 @@ class tapGrid: UIView {
         messageBox.textColor = .black
 //        messageBox.backgroundColor = .clear
         
+    }
+  
+    @objc func gameTimer(){
+        timeSec += 1
+        if(timeSec == 60){
+            timeMin += 1
+            timeSec = 0
+        }
+        if(timeMin == 60){
+            timeHr += 1
+            timeMin = 0
+            timeSec = 0
+        }
+        timerLabel.text = "Timer: " + String(format: "%02d", timeHr) + ":" + String(format: "%02d", timeMin) + ":" + String(format: "%02d", timeSec)
     }
     
 }

@@ -43,7 +43,7 @@
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudoku" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAX-fO-KPE">
                                         <rect key="frame" x="49" y="128" width="262" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -67,6 +67,12 @@
                                             <action selector="enterButton:" destination="QBQ-pf-cOv" eventType="touchUpInside" id="hcb-ay-zad"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="timer: 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zws-GK-kVB">
+                                        <rect key="frame" x="0.0" y="550" width="164" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.75081211750056143" green="0.91668259239174732" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
@@ -74,6 +80,7 @@
                                     <constraint firstItem="g0h-tl-xYB" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="8" id="3hj-SY-UQY"/>
                                     <constraint firstAttribute="trailing" secondItem="JwA-Ia-01k" secondAttribute="trailing" constant="46" id="7RO-2A-bCA"/>
                                     <constraint firstAttribute="bottom" secondItem="FGG-tg-eeO" secondAttribute="bottom" constant="627" id="80M-pE-4aU"/>
+                                    <constraint firstItem="zws-GK-kVB" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="550" id="Bcr-XF-weE"/>
                                     <constraint firstItem="YAX-fO-KPE" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="128" id="EK8-TE-8qq"/>
                                     <constraint firstItem="JwA-Ia-01k" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="639" id="HFk-ay-dVD"/>
                                     <constraint firstItem="JwA-Ia-01k" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.156417" constant="16.500000000000007" id="Iul-KW-d7g"/>
@@ -92,6 +99,7 @@
                                     <constraint firstItem="VKZ-S2-f39" firstAttribute="width" secondItem="QBQ-pf-cOv" secondAttribute="width" multiplier="0.259358" id="h2p-zO-gVF"/>
                                     <constraint firstItem="VKZ-S2-f39" firstAttribute="leading" secondItem="QBQ-pf-cOv" secondAttribute="leading" constant="132" id="j0b-jn-Ovs"/>
                                     <constraint firstAttribute="bottom" secondItem="5PE-xG-a6F" secondAttribute="bottom" constant="661" id="kcB-ey-NrF"/>
+                                    <constraint firstAttribute="bottom" secondItem="zws-GK-kVB" secondAttribute="bottom" constant="143" id="nSg-gi-gGM"/>
                                     <constraint firstItem="JwA-Ia-01k" firstAttribute="height" secondItem="QBQ-pf-cOv" secondAttribute="height" multiplier="0.0434174" id="rsq-Pt-iBL"/>
                                     <constraint firstItem="5PE-xG-a6F" firstAttribute="top" secondItem="QBQ-pf-cOv" secondAttribute="top" constant="18" id="sng-qd-zpB"/>
                                     <constraint firstItem="VKZ-S2-f39" firstAttribute="top" secondItem="YAX-fO-KPE" secondAttribute="bottom" constant="488" id="swT-Mi-qSi"/>
@@ -103,6 +111,7 @@
                                     <outlet property="messageBox" destination="YAX-fO-KPE" id="zRd-ee-xeD"/>
                                     <outlet property="numberText" destination="VKZ-S2-f39" id="jNU-jc-uX2"/>
                                     <outlet property="rowLabel" destination="g0h-tl-xYB" id="a6d-iw-sLX"/>
+                                    <outlet property="timerLabel" destination="zws-GK-kVB" id="Ncz-oO-vsr"/>
                                     <outletCollection property="gestureRecognizers" destination="MxI-7b-frM" appends="YES" id="JYl-ef-CFL"/>
                                     <outletCollection property="gestureRecognizers" destination="Mvv-Le-OMM" appends="YES" id="GFM-ED-vY5"/>
                                 </connections>
@@ -132,7 +141,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="0.0" y="9"/>
+            <point key="canvasLocation" x="0.0" y="8.7053571428571423"/>
         </scene>
     </scenes>
     <resources>
