@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+@IBDesignable
 
 class tapGrid: UIView {
     
@@ -25,26 +25,26 @@ class tapGrid: UIView {
 //    @IBOutlet weak var numberText: UITextField!
     
     //playable randomized array
-    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    
-    //winnable test array
-//    var touchCount = [[0, 0, 3, 7, 8, 9, 4, 5, 6],
-//                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
-//                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
-//                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
-//                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
-//                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
-//                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
-//                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
-//                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
+//    var touchCount = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//                      [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+//
+//    winnable test array
+    var touchCount = [[0, 0, 3, 7, 8, 9, 4, 5, 6],
+                      [4, 5, 6, 1, 2, 3, 7, 8, 9],
+                      [7, 8, 9, 4, 5, 6, 1, 2, 3],
+                      [3, 1, 2, 9, 7, 8, 6, 4, 5],
+                      [6, 4, 5, 3, 1, 2, 9, 7, 8],
+                      [9, 7, 8, 6, 4, 5, 3, 1, 2],
+                      [2, 3, 1, 8, 9, 7, 5, 6, 4],
+                      [5, 6, 4, 2, 3, 1, 8, 9, 7],
+                      [8, 9, 7, 5, 6, 4, 2, 3, 1]]
 ////
     //checks if full
 //    var touchCount = [[1, 3, 8, 4, 1, 1, 5, 6, 7],
@@ -231,7 +231,7 @@ class tapGrid: UIView {
     //double tap deletes the inputted number on the board
     @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
         if (tapPoint.y > CGFloat(yAdjust) && tapPoint.y < CGFloat(min + CGFloat(yAdjust))) && (tapPoint.x > CGFloat(xAdjust) && tapPoint.x < min + CGFloat(xAdjust)) {
-            if(touchCount[row][col] != 0){ //&& initialBoardstate[row][col] == 0
+            if(touchCount[row][col] != 0) && initialBoardstate[row][col] == 0{
                 touchCount[row][col] = 0
             }
         }
@@ -270,15 +270,12 @@ class tapGrid: UIView {
                 touchCount[innerrow][innercol] = (touchCount[innerrow][innercol] == 9) ? 0 : (touchCount[innerrow][innercol] + 1)
             }
             
-//            print(touchCount[innerrow][innercol])
             let numInput = touchCount[innerrow][innercol]
-//            print(numInput)
-//            print(checkRow(randRow: innerrow, cellNum: numInput))
-//            print(checkBlck(randRow: innerrow, randCol: innercol, cellNum: numInput))
+            
             if !checkRowWithArray(randRow: innerrow, cellNum: numInput) && !checkColWithArray(randCol: innercol, cellNum: numInput) && !checkBlckWithArray(randRow: innerrow, randCol: innercol, cellNum: numInput){
                 messageBox.text = "Valid Move"
                 messageBox.textColor = .black
-//                numberText.text = ""
+
             } else {
                 messageBox.text = "Invalid Move: Similar Number."
                 messageBox.textColor = .red
@@ -320,16 +317,12 @@ class tapGrid: UIView {
     }
     
     func checkBlckWithArray(randRow: Int, randCol: Int, cellNum: Int) -> Bool{
-//        var blckVisited = Set<Int>()
-        var blckVisited: [Int] = []
         if cellNum != 0 {
             let blckRow = randRow == 2 || randRow == 5 || randRow == 8 ? randRow - 2 : randRow == 1 || randRow == 4 || randRow == 7 ? randRow - 1 : randRow
             let blckCol = randCol == 2 || randCol == 5 || randCol == 8 ? randCol - 2 : randCol == 1 || randCol == 4 || randCol == 7 ? randCol - 1 : randCol
             var count = 0
-//            print(blckRow, blckCol)
             for xrow in blckRow...(blckRow + 2){
                 for xcol in blckCol...(blckCol + 2){
-//                    blckVisited.insert(touchCount[xrow][xcol])
                     if cellNum == touchCount[xrow][xcol] {
                         count += 1
                     }
@@ -337,8 +330,6 @@ class tapGrid: UIView {
             }
         
             return count > 1 ? true : false
-        
-//            return blckVisited.contains(cellNum) ? true : false
         }
         return false
     }
@@ -376,8 +367,8 @@ class tapGrid: UIView {
         //return true if more than 1 of same number
         return count > 1 ? true : false
     }
-    //get all the elements inside the 2D array
     
+    //get all the elements inside the 2D array
     func getBoardState(){
         for row in 0...8{
             for col in 0...8{
@@ -413,18 +404,38 @@ class tapGrid: UIView {
     /* if board is full return true */
     func checkWin () -> Bool{
         
-        var sum = 0
+        var sumTotal = 0
+        var sumRow = 0
+        var sumCol = 0
+        
+        for row in 0...8{
+            for col in 0...8{
+                sumCol += touchCount[row][col]
+            }
+            if sumCol != 45 {
+                return false
+            }
+            sumCol = 0
+        }
+        
+        for col in 0...8{
+            for row in 0...8{
+                sumRow += touchCount[row][col]
+            }
+            if sumRow != 45 {
+                return false
+            }
+            sumRow = 0
+        }
+        
 
         for i in 0...8 {
             for j in 0...8 {
-                sum += touchCount[i][j]
+                sumTotal += touchCount[i][j]
             }
         }
 
-        return (sum == 405 && checkFull()) ? true : false
-
-        
-//        return checkFull() && !checkEmpty() ? true : false
+        return (sumTotal == 405 && checkFull()) ? true : false
     }
     
     /* checks if the inputted number is valid within that row */
@@ -438,20 +449,6 @@ class tapGrid: UIView {
             return rowVisited.contains(cellNum) ? true : false
         }
         return false
-//        var count = 0
-//        var rowVisited: [Int] = []
-//        for col in 0...8 {
-//            rowVisited.append(touchCount[randRow][col])
-//        }
-//
-//        for i in 0...8 {
-//            if rowVisited[i] == cellNum {
-//                count += 1
-//            }
-//        }
-//
-//        //return true if more than 1 of same number
-//        return count > 1 ? true : false
     }
     
     /* checks if the inputted number is valid within that column */
@@ -464,44 +461,22 @@ class tapGrid: UIView {
             return colVisited.contains(cellNum) ? true : false
         }
         return false
-//        var count = 0
-//        var colVisited: [Int] = []
-//        for row in 0...8 {
-//            colVisited.append(touchCount[row][randCol])
-//        }
-//
-//        for i in 0...8 {
-//            if colVisited[i] == cellNum {
-//                count += 1
-//            }
-//        }
-//
-//        //return true if more than 1 of same number
-//        return count > 1 ? true : false
-        
     }
     
     /* checks the number if valid on a specific 3x3 block
      */
     func checkBlck(randRow: Int, randCol: Int, cellNum: Int) -> Bool{
         var blckVisited = Set<Int>()
-//        var blckVisited: [Int] = []
+
         if cellNum != 0 {
             let blckRow = randRow == 2 || randRow == 5 || randRow == 8 ? randRow - 2 : randRow == 1 || randRow == 4 || randRow == 7 ? randRow - 1 : randRow
             let blckCol = randCol == 2 || randCol == 5 || randCol == 8 ? randCol - 2 : randCol == 1 || randCol == 4 || randCol == 7 ? randCol - 1 : randCol
-            var count = 0
-//            print(blckRow, blckCol)
             for xrow in blckRow...(blckRow + 2){
                 for xcol in blckCol...(blckCol + 2){
                     blckVisited.insert(touchCount[xrow][xcol])
-    //                if cellNum == touchCount[xrow][xcol] {
-    //                    count += 1
-    //                }
+   
                 }
             }
-        
-//        return count > 1 ? true : false
-        
             return blckVisited.contains(cellNum) ? true : false
         }
         return false
