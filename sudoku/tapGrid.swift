@@ -93,9 +93,9 @@ class tapGrid: UIView {
         let num = Int(number)
         
         if(num != nil) {
-            if((num! > 0) && (num! < 10)) {
+            if((num! > 0) && (num! < 10) && initialBoardstate[row][col] == 0) {
                 if !checkCol(randCol: col, cellNum: num!) && !checkRow(randRow: row, cellNum: num!) &&
-                    !checkBlck(randRow: row, randCol: col, cellNum: num!) && !checkFull(){
+                    !checkBlck(randRow: row, randCol: col, cellNum: num!) && !checkFull() {
                     messageBox.text = "Valid Move"
                     messageBox.textColor = .black
 //                    messageBox.backgroundColor = .clear
@@ -108,7 +108,7 @@ class tapGrid: UIView {
 //                    messageBox.backgroundColor = .cyan
                 }
             } else {
-                messageBox.text = "Invalid Number"
+                messageBox.text = "Invalid Number/Move"
                 messageBox.textColor = .red
             }
         }
@@ -154,7 +154,7 @@ class tapGrid: UIView {
         //USING YOUR HINT FROM THE WRITE UP
         let attributes: [NSAttributedString.Key : Any] = [
             .font: UIFont.systemFont(ofSize: minSide/9),
-        .foregroundColor: UIColor.systemCyan
+        .foregroundColor: UIColor.blue
         ]
         let initAtt: [NSAttributedString.Key : Any] = [
             .font: UIFont.systemFont(ofSize: minSide/9),
