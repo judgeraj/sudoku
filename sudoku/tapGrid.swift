@@ -264,8 +264,6 @@ class tapGrid: UIView {
             colLabel.text = "Col: " + String(col)
             rowLabel.text = "Row: " + String(row)
             
-            print(initialBoardstate)
-            print(touchCount)
             if initialBoardstate[innerrow][innercol] == 0 {
                 touchCount[innerrow][innercol] = (touchCount[innerrow][innercol] == 9) ? 0 : (touchCount[innerrow][innercol] + 1)
             }
