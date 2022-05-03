@@ -248,6 +248,7 @@ class tapGrid: UIView {
         boardRand = true
         
         let fixedCellNum = randomNum(row: 1, col: 9)
+        
         for _ in stride(from: 1, to: diff, by: 1){
             
             
@@ -255,14 +256,19 @@ class tapGrid: UIView {
             let randRow = randomNum(row: 0, col: 8)
             let randCol = randomNum(row: 0, col: 8)
             
+          
             if(touchCount[randRow][randCol] != 0){
                     touchCount[randRow][randCol] = 0
                     initialBoardstate[randRow][randCol] = 0
                     
             }
         }
-        for rrow in stride(from: 0, to: 8, by: 1){
-            for ccol in stride(from: 0, to: 8, by: 1){
+        for x in 0...8{
+            print(touchCount[x])
+        }
+        print(fixedCellNum)
+        for rrow in stride(from: 0, to: 9, by: 1){
+            for ccol in stride(from: 0, to: 9, by: 1){
                 if(touchCount[rrow][ccol] != 0){
                     touchCount[rrow][ccol] += fixedCellNum
                     touchCount[rrow][ccol] =  touchCount[rrow][ccol] % 9
